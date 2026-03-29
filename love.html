@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你能和我在一起吗？</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            background: #fff8f0;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .avatar {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            background: url("https://picsum.photos/id/237/200/200") no-repeat center/cover;
+            border-radius: 50%;
+        }
+        h1 {
+            font-size: 28px;
+            color: #663333;
+            margin-bottom: 40px;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .btn-yes {
+            padding: 15px 40px;
+            font-size: 22px;
+            background: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-no {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #487eb0;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        .success {
+            display: none;
+            margin-top: 50px;
+        }
+        .success h2 {
+            font-size: 24px;
+            color: #ff6b81;
+        }
+    </style>
+</head>
+<body>
+    <div class="avatar"></div>
+    <h1>你能和我在一起吗？</h1>
+    <div class="btn-group">
+        <button class="btn-yes" id="yesBtn">同意</button>
+        <button class="btn-no" id="noBtn">不行</button>
+    </div>
+    <div class="success" id="successPage">
+        <h2>谢谢宝!!!好喜欢你!! (＞ω＜)♡</h2>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const successPage = document.getElementById('successPage');
+        const h1 = document.querySelector('h1');
+        const avatar = document.querySelector('.avatar');
+
+        // 让“不行”按钮乱跑，无法点击
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+            noBtn.textContent = '要不再想想？';
+        });
+
+        noBtn.addEventListener('click', () => {
+            noBtn.textContent = '你认真的吗...';
+        });
+
+        // 点击“同意”后跳转到成功页面
+        yesBtn.addEventListener('click', () => {
+            document.querySelector('.btn-group').style.display = 'none';
+            h1.style.display = 'none';
+            avatar.style.background = 'url("https://picsum.photos/id/1025/200/200") no-repeat center/cover';
+            successPage.style.display = 'block';
+        });
+    </script>
+</html>
